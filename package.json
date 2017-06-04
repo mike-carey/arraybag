@@ -1,0 +1,32 @@
+{
+  "name": "arraybag",
+  "version": "1.0.0",
+  "description": "Holds instances for future reference.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mike-carey/arraybag.git"
+  },
+  "keywords": [
+    "storage"
+  ],
+  "author": "Mike Carey <michael.r.carey@att.net>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mike-carey/arraybag/issues"
+  },
+  "homepage": "https://github.com/mike-carey/arraybag#readme",
+  "dependencies": {
+    "caller": "^1.0.1",
+    "find-root": "^1.0.0"
+  },
+  "devDependencies": {
+    "chai": "^4.0.1",
+    "istanbul": "^0.4.5",
+    "mocha": "^3.4.2",
+    "mock-fs": "^4.3.0"
+  }
+}
