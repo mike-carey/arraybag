@@ -11,7 +11,7 @@ const caller = require('caller')
 const findRoot = require('find-root')
 
 const ArrayBag = require('./lib/arraybag')
-const errors = require('./lib/error')
+const errors = require('./lib/errors')
 
 
 function bag() {
