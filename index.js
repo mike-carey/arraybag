@@ -10,11 +10,14 @@
 const caller = require('caller')
 const findRoot = require('find-root')
 
+const debug = require('debug')('arraybag')
+
 const ArrayBag = require('./lib/arraybag')
 ArrayBag.errors = require('./lib/errors')
 
 function bag() {
-    let name = findRoot(caller())
+    debug("Caller is %s", caller(2))
+    let name = findRoot(caller(2))
 
     return ArrayBag.registry(name)
 }
