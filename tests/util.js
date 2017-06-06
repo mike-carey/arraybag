@@ -5,5 +5,11 @@
 
 'use strict'
 
+const path = require('path')
 
-module.exports = {}
+
+module.exports = {
+    getMock: (file) => {
+        return path.join(__dirname, "mocks", file)
+    }
+}

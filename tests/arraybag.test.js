@@ -17,6 +17,8 @@ const decache = require('decache')
 const errors = require('../lib/errors')
 const ArrayBag = require('../lib/arraybag')
 
+const util = require('./util')
+
 
 describe('ArrayBag Tests', () => {
 
@@ -29,9 +31,6 @@ describe('ArrayBag Tests', () => {
     })
 
     let mod = path.resolve("./arraybag.js")
-    function getMock(file) {
-        return path.join(__dirname, "mocks", file)
-    }
 
     let data = {
         "foo": "bar",
@@ -128,7 +127,7 @@ describe('ArrayBag Tests', () => {
 
     it ('Should load the arraybag.js file', () => {
         mockery.enable()
-        mockery.registerSubstitute(mod, getMock("arraybag"))
+        mockery.registerSubstitute(mod, util.getMock("arraybag"))
 
         let bag = ArrayBag.load()
         assert.equal(bag.data["foo"], "bar", "Did not properly grab the arraybag file")
@@ -136,7 +135,7 @@ describe('ArrayBag Tests', () => {
         mockery.deregisterSubstitute(mod)
 
 
-        mockery.registerSubstitute(mod, getMock("object"))
+        mockery.registerSubstitute(mod, util.getMock("object"))
 
         bag = ArrayBag.load()
         assert.equal(bag.data["foo"], "bar", "Did not properly convert the object file")
@@ -152,7 +151,7 @@ describe('ArrayBag Tests', () => {
 
     it ('Should not suppress errors', () => {
         mockery.enable()
-        mockery.registerSubstitute(mod, getMock("syntax-error"))
+        mockery.registerSubstitute(mod, util.getMock("syntax-error"))
 
         assert.throws(() => {
             ArrayBag.load()
@@ -161,7 +160,7 @@ describe('ArrayBag Tests', () => {
         mockery.deregisterSubstitute(mod)
 
         // Module not found
-        mockery.registerSubstitute(mod, getMock("import-error"))
+        mockery.registerSubstitute(mod, util.getMock("import-error"))
 
         assert.throws(() => {
             ArrayBag.load()
@@ -173,7 +172,7 @@ describe('ArrayBag Tests', () => {
 
     it ('Should register arraybags', () => {
         mockery.enable()
-        mockery.registerSubstitute(mod, getMock("object"))
+        mockery.registerSubstitute(mod, util.getMock("object"))
 
         decache("../lib/arraybag")
 
@@ -193,7 +192,7 @@ describe('ArrayBag Tests', () => {
 
         ArrayBag.invalidate("./")
 
-        mockery.registerSubstitute(mod, getMock("arraybag"))
+        mockery.registerSubstitute(mod, util.getMock("arraybag"))
 
         bag = ArrayBag.registry("./", false)
 
